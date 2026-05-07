@@ -23,7 +23,6 @@
       padding: 40px 32px;
       width: 100%; max-width: 380px;
       text-align: center;
-      backdrop-filter: blur(10px);
     }
     .icon {
       width: 72px; height: 72px; border-radius: 20px;
@@ -33,61 +32,55 @@
     }
     h1 { font-size: 20px; font-weight: 500; color: #00B4D8; margin-bottom: 8px; }
     p  { font-size: 13px; color: #6B8FA8; line-height: 1.6; margin-bottom: 24px; }
-    .url-box {
-      background: #162840; border: 0.5px solid #00B4D8;
-      border-radius: 10px; padding: 12px 16px;
-      font-size: 13px; color: #CAF0F8;
-      font-family: monospace; word-break: break-all;
-      margin-bottom: 16px; text-align: left;
+    .spinner {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 3px solid #1E3A55;
+      border-top-color: #00B4D8;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
     }
-    .url-label { font-size: 10px; color: #6B8FA8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status { font-size: 13px; color: #6B8FA8; }
     .open-btn {
       display: block; width: 100%;
       background: linear-gradient(135deg, #0077A8, #00B4D8);
       color: #fff; font-size: 15px; font-weight: 500;
       padding: 14px; border-radius: 12px;
-      text-decoration: none; border: none; cursor: pointer;
-      margin-bottom: 10px; transition: opacity 0.2s;
+      text-decoration: none; margin-top: 20px;
+      transition: opacity 0.2s;
     }
     .open-btn:hover { opacity: 0.85; }
-    .edit-note {
+    .note {
       font-size: 11px; color: #6B8FA8; line-height: 1.5;
       background: rgba(0,180,216,0.06);
       border-radius: 8px; padding: 10px 12px; margin-top: 16px;
     }
-    .edit-note code { color: #00B4D8; font-family: monospace; }
+    .note code { color: #00B4D8; font-family: monospace; }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="icon">⚙</div>
     <h1>Real-Time Tool Detection APP</h1>
-    <p>ENG30002 · Group 5<br>Tap below to open the Control Panel</p>
-
-    <div class="url-box">
-      <div class="url-label">Current server URL</div>
-      <div id="current-url">Loading…</div>
-    </div>
-
-    <a class="open-btn" id="open-btn" href="#">Open Control Panel →</a>
-
-    <div class="edit-note">
-      When your ngrok URL changes, update <code>NGROK_URL</code>
-      in this page's source on GitHub Pages.
+    <p>ENG30002 · Group 5<br>Redirecting to Control Panel…</p>
+    <div class="spinner"></div>
+    <div class="status" id="status">Connecting…</div>
+    <a class="open-btn" id="open-btn" href="#" style="display:none">Open Control Panel →</a>
+    <div class="note">
+      Update <code>CONTROL_URL</code> each session when your ngrok URL changes.
     </div>
   </div>
 
 <script>
-  // ── UPDATE THIS LINE when your ngrok URL changes ──────────────────────────
-  const NGROK_URL = "https://YOUR-NGROK-URL.ngrok-free.app";
-  // ─────────────────────────────────────────────────────────────────────────
+  const CONTROL_URL = "https://armrest-unreached-cavalry.ngrok-free.dev/control?token=ihoHfFvCr99wExzHwOrlV7qeQre44Sqr";
 
-  const controlUrl = NGROK_URL + "/control";
-  document.getElementById("current-url").textContent = controlUrl;
-  document.getElementById("open-btn").href = controlUrl;
+  const btn    = document.getElementById("open-btn");
+  const status = document.getElementById("status");
 
-  // Auto-redirect after 2 seconds
-  setTimeout(() => { window.location.href = controlUrl; }, 2000);
+  btn.href           = CONTROL_URL;
+  btn.style.display  = "block";
+  status.textContent = "Redirecting in 2 seconds…";
+  setTimeout(() => { window.location.href = CONTROL_URL; }, 2000);
 </script>
 </body>
 </html>
