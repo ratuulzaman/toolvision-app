@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real-Time Tool Detection APP</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #060D1A;
+      background-image:
+        radial-gradient(ellipse 600px 400px at 10% 20%, rgba(0,119,168,0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 350px at 90% 80%, rgba(0,200,150,0.2) 0%, transparent 70%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(17,34,51,0.95);
+      border: 0.5px solid #1E3A55;
+      border-radius: 20px;
+      padding: 40px 32px;
+      width: 100%; max-width: 380px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .icon {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: linear-gradient(135deg, #0077A8, #00C896);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 20px;
+    }
+    h1 { font-size: 20px; font-weight: 500; color: #00B4D8; margin-bottom: 8px; }
+    p  { font-size: 13px; color: #6B8FA8; line-height: 1.6; margin-bottom: 24px; }
+    .url-box {
+      background: #162840; border: 0.5px solid #00B4D8;
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 13px; color: #CAF0F8;
+      font-family: monospace; word-break: break-all;
+      margin-bottom: 16px; text-align: left;
+    }
+    .url-label { font-size: 10px; color: #6B8FA8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .open-btn {
+      display: block; width: 100%;
+      background: linear-gradient(135deg, #0077A8, #00B4D8);
+      color: #fff; font-size: 15px; font-weight: 500;
+      padding: 14px; border-radius: 12px;
+      text-decoration: none; border: none; cursor: pointer;
+      margin-bottom: 10px; transition: opacity 0.2s;
+    }
+    .open-btn:hover { opacity: 0.85; }
+    .edit-note {
+      font-size: 11px; color: #6B8FA8; line-height: 1.5;
+      background: rgba(0,180,216,0.06);
+      border-radius: 8px; padding: 10px 12px; margin-top: 16px;
+    }
+    .edit-note code { color: #00B4D8; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">⚙</div>
+    <h1>Real-Time Tool Detection APP</h1>
+    <p>ENG30002 · Group 5<br>Tap below to open the Control Panel</p>
+
+    <div class="url-box">
+      <div class="url-label">Current server URL</div>
+      <div id="current-url">Loading…</div>
+    </div>
+
+    <a class="open-btn" id="open-btn" href="#">Open Control Panel →</a>
+
+    <div class="edit-note">
+      When your ngrok URL changes, update <code>NGROK_URL</code>
+      in this page's source on GitHub Pages.
+    </div>
+  </div>
+
+<script>
+  // ── UPDATE THIS LINE when your ngrok URL changes ──────────────────────────
+  const NGROK_URL = "https://YOUR-NGROK-URL.ngrok-free.app";
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const controlUrl = NGROK_URL + "/control";
+  document.getElementById("current-url").textContent = controlUrl;
+  document.getElementById("open-btn").href = controlUrl;
+
+  // Auto-redirect after 2 seconds
+  setTimeout(() => { window.location.href = controlUrl; }, 2000);
+</script>
+</body>
+</html>
