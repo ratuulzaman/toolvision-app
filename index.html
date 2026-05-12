@@ -17,7 +17,7 @@
       padding: 20px;
     }
     .card {
-      background: rgba(17,34,51,0.95);
+      background: rgba(17,34,51,0.97);
       border: 0.5px solid #1E3A55;
       border-radius: 20px;
       padding: 40px 32px;
@@ -34,8 +34,7 @@
     p  { font-size: 13px; color: #6B8FA8; line-height: 1.6; margin-bottom: 24px; }
     .spinner {
       width: 40px; height: 40px; border-radius: 50%;
-      border: 3px solid #1E3A55;
-      border-top-color: #00B4D8;
+      border: 3px solid #1E3A55; border-top-color: #00B4D8;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
     }
@@ -50,33 +49,21 @@
       transition: opacity 0.2s;
     }
     .open-btn:hover { opacity: 0.85; }
-    .note {
-      font-size: 11px; color: #6B8FA8; line-height: 1.5;
-      background: rgba(0,180,216,0.06);
-      border-radius: 8px; padding: 10px 12px; margin-top: 16px;
-    }
-    .note code { color: #00B4D8; font-family: monospace; }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="icon">⚙</div>
     <h1>Real-Time Tool Detection APP</h1>
-    <p>ENG30002 · Group 5<br>Redirecting to Control Panel…</p>
+    <p>ENG30002 · Group 5<br>Redirecting to login…</p>
     <div class="spinner"></div>
     <div class="status" id="status">Connecting…</div>
-    <a class="open-btn" id="open-btn" href="#" style="display:none">Open Control Panel →</a>
-    <div class="note">
-      Update <code>CONTROL_URL</code> each session when your ngrok URL changes.
-    </div>
+    <a class="open-btn" id="open-btn" href="https://armrest-unreached-cavalry.ngrok-free.dev/control" style="display:none">Open App →</a>
   </div>
-
 <script>
   const CONTROL_URL = "https://armrest-unreached-cavalry.ngrok-free.dev/control";
-
   const btn    = document.getElementById("open-btn");
   const status = document.getElementById("status");
-
   btn.href           = CONTROL_URL;
   btn.style.display  = "block";
   status.textContent = "Redirecting in 2 seconds…";
